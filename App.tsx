@@ -17,9 +17,6 @@ const firebaseConfig = {
   appId: "1:71281311981:web:89d60fcd962b16883d8ce4"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
 // Initialisation (seulement si les clés sont remplies)
 const isFirebaseSetup = firebaseConfig.apiKey !== "VOTRE_API_KEY";
 const app = isFirebaseSetup ? initializeApp(firebaseConfig) : null;
