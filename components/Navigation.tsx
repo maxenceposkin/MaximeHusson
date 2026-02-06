@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface NavigationProps {
@@ -9,24 +10,24 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ onNavigate, onOpenAbout, currentView, title }) => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+    <nav className="fixed top-0 left-0 w-full z-[100] px-8 py-10 md:px-12 flex justify-between items-center mix-blend-difference text-white">
       <div 
-        className="text-lg font-medium tracking-tight pointer-events-auto cursor-pointer select-none transition-opacity hover:opacity-70"
+        className="text-[12px] font-light tracking-[0.5em] cursor-pointer hover:opacity-50 transition-opacity uppercase"
         onClick={() => onNavigate('home')}
       >
-        {title.toUpperCase()}
+        {title}
       </div>
       
-      <div className="flex gap-8 text-sm font-light pointer-events-auto">
+      <div className="flex gap-12 text-[10px] font-light tracking-[0.3em]">
         <button 
           onClick={() => onNavigate('work')}
-          className={`transition-all decoration-1 underline-offset-4 ${currentView === 'work' ? 'underline' : 'hover:underline opacity-70 hover:opacity-100'}`}
+          className={`hover-reveal py-1 transition-opacity ${currentView === 'work' ? 'opacity-100' : 'opacity-40'}`}
         >
-          WORK
+          INDEX
         </button>
         <button 
           onClick={onOpenAbout}
-          className="hover:underline underline-offset-4 decoration-1 transition-all opacity-70 hover:opacity-100"
+          className="hover-reveal py-1 opacity-40 hover:opacity-100 transition-opacity"
         >
           INFO
         </button>
