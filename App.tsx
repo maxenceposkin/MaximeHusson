@@ -7,7 +7,6 @@ import { Project } from './types';
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, onSnapshot, setDoc } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCdd1zhByS1MQaO1KegHktgFOIAaeRkXNw",
   authDomain: "maxime-husson.firebaseapp.com",
@@ -15,6 +14,7 @@ const firebaseConfig = {
   storageBucket: "maxime-husson.firebasestorage.app",
   messagingSenderId: "71281311981",
   appId: "1:71281311981:web:89d60fcd962b16883d8ce4"
+
 };
 
 // Initialisation (seulement si les clés sont remplies)
@@ -165,18 +165,20 @@ export default function App() {
 
         {currentView === 'work' && (
             <div className="pt-32 pb-20 px-4 md:px-6 max-w-[2000px] mx-auto animate-[fadeIn_0.5s_ease-out]">
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
+                {/* Modification ici: 2 colonnes (md:columns-2) au lieu de 3, et suppression de lg:columns-3 */}
+                <div className="columns-1 md:columns-2 gap-4 md:gap-8 space-y-4 md:space-y-8">
                 {projects.map((project) => (
                     <div 
                     key={project.id} 
                     className="break-inside-avoid group cursor-pointer"
                     onClick={() => setSelectedProject(project)}
                     >
-                    <div className="relative overflow-hidden bg-neutral-900">
+                    {/* Modification ici: aspect-video pour forcer le 16/9 */}
+                    <div className="relative overflow-hidden bg-neutral-900 aspect-video">
                         <img 
                         src={project.coverImage} 
                         alt={project.title}
-                        className="w-full h-auto object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 opacity-90 group-hover:opacity-100"
                         loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
