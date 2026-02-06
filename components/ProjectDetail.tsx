@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Project } from '../types';
 import { X } from 'lucide-react';
@@ -9,6 +8,7 @@ interface ProjectDetailProps {
 }
 
 export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }) => {
+  // Lock body scroll when modal is open
   useEffect(() => {
     if (project) {
       document.body.style.overflow = 'hidden';
@@ -23,45 +23,45 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-[110] bg-black text-white flex flex-col animate-[fadeIn_0.5s_ease-out]">
+    <div className="fixed inset-0 z-[60] bg-[#050505] text-[#e5e5e5] flex flex-col animate-[fadeIn_0.3s_ease-out]">
       {/* Header */}
-      <div className="flex justify-between items-center px-8 py-10 md:px-12 border-b border-white/5">
-        <h2 className="text-xs font-light tracking-[0.4em] uppercase">{project.title}</h2>
+      <div className="flex justify-between items-center p-6 border-b border-neutral-900">
+        <h2 className="text-xl font-normal tracking-wide">{project.title}</h2>
         <button 
           onClick={onClose}
-          className="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-white/50 hover:text-white transition-all"
+          className="p-2 hover:bg-neutral-900 rounded-full transition-colors text-white"
         >
-          Close <X size={20} strokeWidth={1} className="group-hover:rotate-90 transition-transform duration-500" />
+          <X size={24} strokeWidth={1} />
         </button>
       </div>
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-[1400px] mx-auto p-8 md:p-20">
+        <div className="max-w-screen-xl mx-auto p-4 md:p-10">
           
-          <div className="flex flex-col lg:flex-row gap-20 mb-32">
-            <div className="lg:w-1/4 space-y-12 sticky top-10 self-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20">
+            <div className="md:col-span-4 lg:col-span-3 space-y-8 sticky top-10 self-start">
                <div>
-                  <p className="text-[9px] text-neutral-600 uppercase tracking-[0.3em] mb-4">Focus</p>
-                  <p className="text-sm font-light tracking-[0.1em]">{project.category}</p>
+                  <p className="text-xs text-neutral-500 uppercase tracking-widest mb-1">Catégorie</p>
+                  <p className="text-sm font-medium">{project.category}</p>
                </div>
                <div>
-                  <p className="text-[9px] text-neutral-600 uppercase tracking-[0.3em] mb-4">Edition</p>
-                  <p className="text-sm font-light tracking-[0.1em]">{project.year}</p>
+                  <p className="text-xs text-neutral-500 uppercase tracking-widest mb-1">Année</p>
+                  <p className="text-sm font-medium">{project.year}</p>
                </div>
                <div>
-                  <p className="text-[9px] text-neutral-600 uppercase tracking-[0.3em] mb-4">Context</p>
-                  <p className="text-sm leading-[1.8] font-light text-neutral-400 tracking-wide">{project.description}</p>
+                  <p className="text-xs text-neutral-500 uppercase tracking-widest mb-1">À propos</p>
+                  <p className="text-sm leading-relaxed text-neutral-400">{project.description}</p>
                </div>
             </div>
 
-            <div className="lg:w-3/4 space-y-24">
+            <div className="md:col-span-8 lg:col-span-9 space-y-4">
               {project.images.map((img, idx) => (
-                <div key={idx} className="w-full bg-neutral-950 overflow-hidden">
+                <div key={idx} className="w-full">
                   <img 
                     src={img} 
                     alt={`${project.title} - ${idx + 1}`} 
-                    className="w-full h-auto object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-1000"
+                    className="w-full h-auto object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700 bg-neutral-900"
                     loading="lazy"
                   />
                 </div>
@@ -69,10 +69,10 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }
             </div>
           </div>
 
-          {/* Footer Navigation */}
-          <div className="border-t border-white/5 pt-24 pb-48 text-center cursor-pointer group" onClick={onClose}>
-             <p className="text-[10px] uppercase tracking-[0.6em] mb-4 text-white/20 group-hover:text-white/60 transition-colors">Return to Index</p>
-             <h3 className="text-4xl md:text-6xl font-extralight tracking-[0.1em] uppercase group-hover:tracking-[0.2em] transition-all duration-1000">See All Projects</h3>
+          {/* Next Project Teaser */}
+          <div className="border-t border-neutral-900 pt-10 pb-20 text-center cursor-pointer hover:opacity-50 transition-opacity" onClick={onClose}>
+             <p className="text-xs uppercase tracking-widest mb-2 text-neutral-500">Retourner à la galerie</p>
+             <h3 className="text-2xl font-light">Voir tous les projets</h3>
           </div>
         </div>
       </div>
